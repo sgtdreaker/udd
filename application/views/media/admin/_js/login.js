@@ -15,7 +15,6 @@ $(function() {
 			$('#usr_senha').focus();
 		}else{
 			$.post("<?=site_url(URL_PREFIX.'login/entrar')?>", $("#frm_login").serialize(), function(data) {
-				alert(data);
 				if(data == 0)
 				{
 					$('.retorno').fadeIn('slow');

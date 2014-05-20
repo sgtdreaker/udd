@@ -9,6 +9,6 @@ class Welcome extends CI_Controller {
 	
 	public function xx()
 	{
-		echo 'teste';
+		echo $this->session->userdata('rmtgph_auth');
 	}
 }

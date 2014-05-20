@@ -25,14 +25,11 @@ class Login extends CI_Controller {
 	}
 	public function valida()
 	{
-		/*if($this->auth->esta_autenticado())
+		if($this->auth->esta_autenticado())
 		{
 			redirect(URL_PREFIX.'inicio', 'location');
 		}else{
 			redirect(URL_PREFIX, 'location');
-		}*/
-		
-		//echo '**** '.$this->auth->esta_autenticado();
-		echo $this->session->userdata('rmtlj_auth');
+		}
 	}
 }

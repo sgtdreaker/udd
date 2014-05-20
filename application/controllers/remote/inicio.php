@@ -4,7 +4,7 @@ class Inicio extends CI_Controller {
 
 	public function index()
 	{
-		/*if(!$this->auth->esta_autenticado())
+		if(!$this->auth->esta_autenticado())
 		{
 			redirect(URL_PREFIX, 'location');
 		}else{
@@ -13,8 +13,7 @@ class Inicio extends CI_Controller {
 																	   'js' => array('default')));
 			$this->load->view(URL_PREFIX.'inicio/index');
 			$this->load->view(URL_PREFIX.'templates/estrutura_fecha');
-		}*/
-		echo 'kfjkf';
+		}
 	}
 	
 	public function altera()

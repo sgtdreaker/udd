@@ -104,7 +104,7 @@ class Auth
 										 'c_tipo'       => $this->CI->encrypt->decode(C_TIPO),
 										 'acesso_hora'	=> $acess_hora,
 										 'acesso_data'  => $acess_data,
-										 'rmtgph_auth'   => true);
+										 'rmtgph_auth'  => true);
 					
 					$this->CI->session->set_userdata($credenciais);
 	
@@ -162,7 +162,7 @@ class Auth
 									 'c_tipo'      => $coluna->c_tipo,
 									 'acesso_hora' => $acess_hora,
 									 'acesso_data' => $acess_data,
-									 'rmtgph_auth'  => true);
+									 'rmtgph_auth' => true);
 				
 				$this->CI->session->set_userdata($credenciais);
 	
