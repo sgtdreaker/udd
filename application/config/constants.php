@@ -36,6 +36,29 @@ define('FOPEN_READ_WRITE_CREATE',				'a+b');
 define('FOPEN_WRITE_CREATE_STRICT',				'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
+/*
+|--------------------------------------------------------------------------
+| Definicoes gerais para o GoPublish
+|--------------------------------------------------------------------------
+|
+| Abaixo descrivo as constantes para o GoPublish
+|
+*/
+
+define('N_COD',			'XpioJJjhQxkLa9pYBhScEqbOSzyIsl5iZ5sOF8N+Wecf+x2uNoKdsvM/EVZcYxXsay1w0Y5+V41aPhpRSCSqGw==');
+define('C_EMAIL',		'1e119fa46c3625077f82f44bc46bb406');
+define('C_USUARIO',		'WM8hBownYoKYFYwr6Rnu2LzEbRjQz54c/7TZFeoKPS9G7FkduoOYuh+JQtjL2rC1WjSHEEnqVLGe1qCyjaDxdg==');
+define('C_NOME',		'ClOlF//Qf++7k7MlrhyOjxL89b2n64DeR2aDI5MAILswATecbMYJ6RujBM86KQbn47upH7fJMe0LDjMebKPzJQ==');
+define('C_SENHA',		'f53e56ca0175d57a40a405b299d0b792');
+define('C_TIPO',		'GuzYzfAvaqJ+Z8cFMRU8zEfKq4d8P69mre6cmHpukkuDipDHPilQU34xG/JBRPQXwQxc/E5IlG2u/CtZEHW7sQ==');
+define('C_STATUS',		'tZwvEe2oewLzVjj/1UlS/3AyTbAf52FhYQWHZ3VCewqvYEpUt4pVRO7ExHkW4va9V6iCBFIoTggtiTPxP57oNA==');
+define('C_REGISTRO',	'AuWslL2BXNrfggWe2Gn2tuLGE7K9VPTBQozuFBQEIdqXJWLy4b4i2FFEjPAQqwTs7oi5Y+VR2U1G6nLR4Aijrg==');
+define('DB_PREFIX',		'gph_');
+define('URL_PREFIX',	'remote/');
+define('RMT_NOME',		'GoPublish');
+define('BASE_CLIENT',	'udd');
+define('BASE_ISSET',	'http://localhost/udd/');
+define('DEBUG',			TRUE);
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
