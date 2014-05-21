@@ -1,5 +1,3 @@
-</section>
-<footer class="footer"></footer>
 <? 
 	$this->inits->init_css($css);
 	$this->inits->init_js($js);

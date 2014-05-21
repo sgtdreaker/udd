@@ -17,6 +17,10 @@ class Login extends CI_Controller {
 		}else{
 			if($this->auth->entrar($username,$userpass))
 			{
+				// gravando acesso do usuario
+				$this->db->insert(DB_PREFIX.'rmtacess', array('n_cod_user' => @$this->auth->n_cod, 
+															  'd_data'	   => date("Y-m-d"), 
+															  't_hora'	   => date("H:i:s")));
 				echo TRUE;
 			}else{
 				echo FALSE;
@@ -31,5 +35,11 @@ class Login extends CI_Controller {
 		}else{
 			redirect(URL_PREFIX, 'location');
 		}
+	}
+	
+	public function sair()
+	{
+		$this->auth->sair();
+		redirect(URL_PREFIX, 'location');
 	}
 }

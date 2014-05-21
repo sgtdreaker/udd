@@ -48,12 +48,46 @@ class Auth
 			$this->acesso_data  = $this->CI->session->userdata('acesso_data');
 			
 			$this->esta_autenticado = true;
-			return true;
+			
+			// verificando se o usuario pode acessar tal sessao
+			if($this->c_tipo != 'admin')
+			{
+				$sessao    = $this->CI->uri->segment(2);
+				$subsessao = $this->CI->uri->segment(3);
+				$acao      = $this->CI->uri->segment(4);
+				$matriz    = array();
+				if(!empty($sessao))
+				{ 
+					$matriz = array('n_cod_user' => $this->n_cod, 
+									'c_sessao'    => $sessao);
+				}
+				if(!empty($subsessao)){ 
+					$matriz = array('n_cod_user' => $this->n_cod, 
+									'c_sessao'    => $sessao, 
+									'c_subsessao' => $subsessao); 
+				}
+				if(!empty($acao)){ 
+					$matriz = array('n_cod_user' => $this->n_cod, 
+									'c_sessao'    => $sessao, 
+									'c_subsessao' => $subsessao,
+									'c_acao'      => $acao); 
+				}
+				$this->CI->db->where($matriz);
+				$perm = $this->CI->db->get(DB_PREFIX.'permissoes');
+				if($perm->num_rows() > 0)
+				{
+					return TRUE;
+				}else{
+					return FALSE;
+				}
+			}else{
+				return TRUE;
+			}
 		}
 		else
 		{
-			$this->esta_autenticado = false;
-			return false;
+			$this->esta_autenticado = FALSE;
+			return FALSE;
 		}
 	}
 
@@ -83,17 +117,17 @@ class Auth
 			if(($valida_user == C_EMAIL) && ($c_senha == C_SENHA))
 			{
 				// buscando dados de acessos
-					$this->CI->db->where(array('n_cod'=>$this->CI->encrypt->decode(N_COD)));
+					$this->CI->db->where(array('n_cod_user'=>$this->CI->encrypt->decode(N_COD)));
 					$this->CI->db->order_by('d_data desc, t_hora desc'); 
 					$acesso = $this->CI->db->get(DB_PREFIX.'rmtacess');
 				//	Define objeto que tera os resultados
 					$acess = $acesso->row();
 					if ($acesso->num_rows() > 0)
 					{
-						$acess_hora  = $acess->hora_acess;
-						$acess_data = $acess->data_acess;
+						$acess_hora  = $acess->t_hora;
+						$acess_data = $acess->d_data;
 					}else{
-						$acess_hora  = '00h00';
+						$acess_hora  = '00:00:00';
 						$acess_data = '0000-00-00';
 					}
 				//	Definie array com resultados para salvar em session

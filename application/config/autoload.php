@@ -76,7 +76,8 @@ $autoload['libraries'] = array('database',
 $autoload['helper'] = array('url', 
 						    'file',
 							'html',
-							'form');
+							'form',
+							'datahlp');
 
 
 /*

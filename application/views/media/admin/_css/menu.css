@@ -1,0 +1,106 @@
+ul.gph_menu{
+	float:right;
+	margin:0;
+	padding:0;
+	list-style: none;
+	font:bold 14px Arial, Helvetica, sans-serif;
+}
+ul.gph_menu a{
+	text-decoration:none;
+	outline:none;
+}
+ul.gph_menu li{
+	float:left;
+	background:url(<?=base_url('sites/admin/_images/fade.png')?>) center no-repeat;
+	width:130px;
+	height:85px;
+	position:relative;
+	cursor:pointer;
+}
+ul.gph_menu li > a{
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:130px;
+	height:85px;
+	z-index:12;
+}
+ul.gph_menu li a img{
+	border:none;
+	position:absolute;
+	width:0px;
+	height:0px;
+	bottom:0px;
+	left:85px;
+	z-index:100;
+	-moz-box-shadow:0px 0px 4px #000;
+	-webkit-box-shadow:0px 0px 4px #000;
+	box-shadow:0px 0px 4px #000;
+}
+ul.gph_menu li span.gph_wrap{
+	position:absolute;
+	top:25px;
+	left:0px;
+	width:130px;
+	height:60px;
+	z-index:15;
+}
+ul.gph_menu li span.gph_active{
+	position:absolute;
+	background:#111;
+	top:85px;
+	width:130px;
+	height:0px;
+	left:0px;
+	z-index:14;
+	-moz-box-shadow:0px 0px 4px #000 inset;
+	-webkit-box-shadow:0px 0px 4px #000 inset;
+	box-shadow:0px 0px 4px #000 inset;
+}
+ul.gph_menu li span span.gph_link,
+ul.gph_menu li span span.gph_descr,
+ul.gph_menu li div.gph_box a{
+	margin-left:15px;
+	/*text-transform:uppercase;*/
+	text-shadow:1px 1px 1px #000;
+}
+ul.gph_menu li span span.gph_link{
+	color:#fff;
+	font-size:14px;
+	float:left;
+	clear:both;
+}
+ul.gph_menu li span span.gph_descr{
+	color:#0B75AF;
+	float:left;
+	clear:both;
+	width:155px; /*For dumbass IE7*/
+	font-size:12px;
+	letter-spacing:1px;
+}
+ul.gph_menu li div.gph_box{
+	display:block;
+	position:absolute;
+	width:130px;
+	overflow:hidden;
+	height:170px;
+	top:85px;
+	left:0px;
+	display:none;
+	background:transparent url(<?=base_url('sites/admin/_images/risco.jpg')?>) left top repeat-y;
+}
+ul.gph_menu li div.gph_box a{
+	float:left;
+	clear:both;
+	line-height:30px;
+	margin:0px;
+	padding-left:10px;
+	font-size:12px;
+	color:#0B75AF;
+}
+ul.gph_menu li div.gph_box a:first-child{
+	margin-top:15px;
+}
+ul.gph_menu li div.gph_box a:hover{
+	color:#fff;
+}
