@@ -41,8 +41,8 @@ CREATE TABLE IF NOT EXISTS `gph_cache` (
 --
 
 INSERT INTO `gph_cache` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('1dee696d3f820917de39c52cdf83509f', '::1', 'Mozilla/5.0 (Windows NT 6.2; WOW64; rv:29.0) Gecko/20100101 Firefox/29.0', 1400707113, 'a:9:{s:9:"user_data";s:0:"";s:5:"n_cod";s:3:"999";s:7:"c_email";s:17:"renato@fpc.com.br";s:6:"c_nome";s:17:"renato@fpc.com.br";s:9:"c_usuario";s:20:"Renato Costa Barbosa";s:6:"c_tipo";s:5:"admin";s:11:"acesso_hora";s:8:"18:51:07";s:11:"acesso_data";s:10:"2014-05-21";s:11:"rmtgph_auth";b:1;}'),
-('6452b46a4afa9a02ca44877806172de0', '::1', 'Mozilla/5.0 (Windows NT 6.2; WOW64; rv:29.0) Gecko/20100101 Firefox/29.0', 1400703916, 'a:9:{s:9:"user_data";s:0:"";s:5:"n_cod";s:3:"999";s:7:"c_email";s:17:"renato@fpc.com.br";s:6:"c_nome";s:17:"renato@fpc.com.br";s:9:"c_usuario";s:20:"Renato Costa Barbosa";s:6:"c_tipo";s:5:"admin";s:11:"acesso_hora";s:8:"00:00:00";s:11:"acesso_data";s:10:"0000-00-00";s:11:"rmtgph_auth";b:1;}');
+('21c2f4008502e7534ae9014fdde2833a', '::1', 'Mozilla/5.0 (Windows NT 6.2; WOW64; rv:29.0) Gecko/20100101 Firefox/29.0', 1400791716, 'a:9:{s:9:"user_data";s:0:"";s:5:"n_cod";s:3:"999";s:7:"c_email";s:17:"renato@fpc.com.br";s:6:"c_nome";s:17:"renato@fpc.com.br";s:9:"c_usuario";s:20:"Renato Costa Barbosa";s:6:"c_tipo";s:5:"admin";s:11:"acesso_hora";s:8:"15:31:30";s:11:"acesso_data";s:10:"2014-05-22";s:11:"rmtgph_auth";b:1;}'),
+('dfcf2ce0d6df6c7b5a434ed874fb159c', '::1', 'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.137 Safari/537.36', 1400792452, 'a:9:{s:9:"user_data";s:0:"";s:5:"n_cod";s:1:"1";s:7:"c_email";s:24:"renato@diasdesign.com.br";s:6:"c_nome";s:20:"Renato Costa Barbosa";s:9:"c_usuario";s:24:"renato@diasdesign.com.br";s:6:"c_tipo";s:4:"user";s:11:"acesso_hora";N;s:11:"acesso_data";N;s:11:"rmtgph_auth";b:1;}');
 
 -- --------------------------------------------------------
 
@@ -62,9 +62,9 @@ CREATE TABLE IF NOT EXISTS `gph_permissoes` (
 --
 
 INSERT INTO `gph_permissoes` (`n_cod_user`, `c_sessao`, `c_subsessao`, `c_acao`) VALUES
-(9, 'inicio', 'menu', 'cadastrar'),
-(9, 'login', 'entrar', 'entrar'),
-(9, 'login', 'valida', 'entrar');
+(1, 'inicio', 'menu', 'cadastrar'),
+(1, 'login', 'valida', 'entrar'),
+(1, 'valida', 'menu', 'entrar');
 
 -- --------------------------------------------------------
 
@@ -78,30 +78,15 @@ CREATE TABLE IF NOT EXISTS `gph_rmtacess` (
   `t_hora` time NOT NULL,
   `d_data` date NOT NULL,
   PRIMARY KEY (`n_cod`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Extraindo dados da tabela `gph_rmtacess`
 --
 
 INSERT INTO `gph_rmtacess` (`n_cod`, `n_cod_user`, `t_hora`, `d_data`) VALUES
-(1, 999, '17:36:33', '2014-05-21'),
-(2, 999, '17:36:53', '2014-05-21'),
-(3, 999, '17:38:30', '2014-05-21'),
-(4, 999, '17:39:58', '2014-05-21'),
-(5, 999, '17:41:34', '2014-05-21'),
-(6, 999, '18:18:43', '2014-05-21'),
-(7, 999, '18:37:45', '2014-05-21'),
-(8, 999, '18:39:04', '2014-05-21'),
-(9, 999, '18:39:43', '2014-05-21'),
-(10, 999, '18:40:52', '2014-05-21'),
-(11, 999, '18:44:56', '2014-05-21'),
-(12, 999, '18:45:21', '2014-05-21'),
-(13, 999, '18:47:06', '2014-05-21'),
-(14, 999, '18:48:01', '2014-05-21'),
-(15, 999, '18:50:22', '2014-05-21'),
-(16, 999, '18:51:07', '2014-05-21'),
-(17, 999, '18:53:03', '2014-05-21');
+(1, 1, '18:00:38', '2014-05-22'),
+(2, 1, '18:01:05', '2014-05-22');
 
 -- --------------------------------------------------------
 
@@ -162,7 +147,39 @@ CREATE TABLE IF NOT EXISTS `gph_usuarios` (
   `c_registro` date NOT NULL,
   `c_status` enum('ativo','inativo') NOT NULL DEFAULT 'inativo',
   PRIMARY KEY (`n_cod`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Extraindo dados da tabela `gph_usuarios`
+--
+
+INSERT INTO `gph_usuarios` (`n_cod`, `c_email`, `c_usuario`, `c_nome`, `c_senha`, `c_tipo`, `c_registro`, `c_status`) VALUES
+(1, 'renato@diasdesign.com.br', 'renato@diasdesign.com.br', 'Renato Costa Barbosa', 'c20ad4d76fe97759aa27a0c99bff6710', 'user', '2014-05-22', 'ativo');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `gph_usuarios_dados`
+--
+
+CREATE TABLE IF NOT EXISTS `gph_usuarios_dados` (
+  `n_cod_usuario` int(11) NOT NULL,
+  `c_endereco` varchar(250) NOT NULL,
+  `c_bairro` varchar(150) NOT NULL,
+  `c_cidade` varchar(150) NOT NULL,
+  `c_estado` varchar(2) NOT NULL,
+  `n_fone_ddd` int(2) NOT NULL,
+  `c_fone_numero` varchar(30) NOT NULL,
+  `n_celular_ddd` int(2) NOT NULL,
+  `c_celular_numero` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `gph_usuarios_dados`
+--
+
+INSERT INTO `gph_usuarios_dados` (`n_cod_usuario`, `c_endereco`, `c_bairro`, `c_cidade`, `c_estado`, `n_fone_ddd`, `c_fone_numero`, `n_celular_ddd`, `c_celular_numero`) VALUES
+(1, 'Rua Ana Nery, 204', 'Dona Amélia', 'Araçatuba', 'SP', 18, '3301-0939', 18, '9916-65557');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

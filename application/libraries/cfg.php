@@ -25,18 +25,61 @@ class Cfg
 													'js'    => '',
 													'css'   => '',
 													'link'  => 'conteudos',
-													'subm'  => array('s1' => array('id'     => 'ghp_menu_sessao',
-																				   'status' => 'on',
-																				   'txt'    => 'Sessão',
-																				   'link'   => 'sessao'),
-																	 's2' => array('id'     => 'ghp_menu_subsessao',
-																				   'status' => 'on',
-																				   'txt'    => 'Subsessão',
-																				   'link'   => 'subsessao'),
-																	 's3' => array('id'     => 'ghp_menu_conteudos',
-																				   'status' => 'on',
-																				   'txt'    => 'Conteúdos',
-																				   'link'   => 'conteudos')),
+													'subm'  => array('s1' => array('id'      => 'ghp_menu_sessao',
+																				   'status'  => 'on',
+																				   'txt'     => 'Sessão',
+																				   'link'    => 'sessao',
+																				   'padrao'  => 'conteudos',
+																				   'submenu' => array('m1' => array('id'   => 'sbm_cadastro',
+																				   									'txt'  => 'Cadastrar',
+																													'link' => 'sessao/cadastrar',
+																													'sts'  => 'on'),
+																									  'm2' => array('id'   => 'sbm_alterar',
+																				   									'txt'  => 'Alterar',
+																													'link' => 'sessao/alterar',
+																													'sts'  => 'on'),
+																									  'm3' => array('id'   => 'sbm_excluir',
+																				   									'txt'  => 'Excluir',
+																													'link' => 'sessao/excluir',
+																													'sts'  => 'on')),
+																				   ),
+																	 's2' => array('id'      => 'ghp_menu_subsessao',
+																				   'status'  => 'on',
+																				   'txt'     => 'Subsessão',
+																				   'link'    => 'subsessao',
+																				   'padrao'  => 'conteudos',
+																				   'submenu' => array('m1' => array('id'   => 'sbm_cadastro',
+																				   									'txt'  => 'Cadastrar',
+																													'link' => 'subsessao/cadastrar',
+																													'sts'  => 'on'),
+																									  'm2' => array('id'   => 'sbm_alterar',
+																				   									'txt'  => 'Alterar',
+																													'link' => 'subsessao/alterar',
+																													'sts'  => 'on'),
+																									  'm3' => array('id'   => 'sbm_excluir',
+																				   									'txt'  => 'Excluir',
+																													'link' => 'subsessao/excluir',
+																													'sts'  => 'on')
+																				   					 )
+																				   ),
+																	 's3' => array('id'      => 'ghp_menu_conteudos',
+																				   'status'  => 'on',
+																				   'txt'     => 'Conteúdos',
+																				   'link'    => 'conteudos',
+																				   'padrao'  => 'conteudos',
+																				   'submenu' => array('m1' => array('id'   => 'sbm_cadastro',
+																				   									'txt'  => 'Cadastrar',
+																													'link' => 'conteudos/cadastrar',
+																													'sts'  => 'on'),
+																									  'm2' => array('id'   => 'sbm_alterar',
+																				   									'txt'  => 'Alterar',
+																													'link' => 'conteudos/alterar',
+																													'sts'  => 'on'),
+																									  'm3' => array('id'   => 'sbm_excluir',
+																				   									'txt'  => 'Excluir',
+																													'link' => 'conteudos/excluir',
+																													'sts'  => 'on')))
+																				   ),
 													'sts'   => 'on',
 													'extra' => ''),
 							  'm2' => array('id' => '1',
@@ -45,10 +88,24 @@ class Cfg
 													'js'    => '',
 													'css'   => '',
 													'link'  => 'administracao',
-													'subm'  => array('s1' => array('id'     => 'ghp_menu_usuarios',
-																				   'status' => 'on',
-																				   'txt'    => 'Usuários',
-																				   'link'   => 'usuarios')),
+													'subm'  => array('s1' => array('id'      => 'ghp_menu_usuarios',
+																				   'status'  => 'on',
+																				   'txt'     => 'Usuários',
+																				   'link'    => 'usuarios',
+																				   'padrao'  => 'administracao',
+																				   'submenu' => array('m1' => array('id'   => 'sbm_cadastro',
+																				   									'txt'  => 'Cadastrar',
+																													'link' => 'usuarios/cadastrar',
+																													'sts'  => 'on'),
+																									  'm2' => array('id'   => 'sbm_alterar',
+																				   									'txt'  => 'Alterar',
+																													'link' => 'usuarios/alterar',
+																													'sts'  => 'on'),
+																									  'm3' => array('id'   => 'sbm_excluir',
+																				   									'txt'  => 'Excluir',
+																													'link' => 'usuarios/excluir',
+																													'sts'  => 'on')))
+																	),
 													'sts'   => 'on',
 													'extra' => '')
 							  );
@@ -56,7 +113,6 @@ class Cfg
 	
 	/*
 	 * retorna a base para menus
-	 * tipo: geral ou principal
 	 */
 	public function menu($ret = FALSE)
 	{
@@ -102,5 +158,30 @@ class Cfg
 		
 		return $ret;
 	}
+	
+	/*
+	 * retorna a base para submenus
+	 * local: sessao onde devo procurar
+	 */
+	public function submenu($local = FALSE)
+	{
+		$sessao = $this->CI->uri->segment(2);
+		foreach($this->d_menu as $m):
+			if($m['link'] == $local):
+				foreach($m['subm'] as $sm):
+					if(($m['link'] == $local) && ($sm['padrao'] == $local) && ($sm['link'] == $sessao)):
+						echo '<div class="gph_intsubmenu"><h1>Menu de Ações</h1><ul>';
+						foreach($sm['submenu'] as $smshow):
+							if($smshow['sts'] == 'on'):
+								echo '<li><a href="'.site_url(URL_PREFIX.$smshow['link']).'" id="'.$smshow['id'].'" class="btn">'.$smshow['txt'].'</a></li>';
+							endif;
+						endforeach;
+						echo '</ul></div>';
+					endif;
+				endforeach;
+			endif;
+		endforeach;
+	}
+	
 }
 ?>

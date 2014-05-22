@@ -34,6 +34,7 @@ body{
 	width:100%;
 	clear:both;
 	border-bottom:1px dotted #333;
+	margin-bottom:10px;
 }
 .userinfos_dados{
 	width:1000px;
@@ -63,6 +64,124 @@ body{
 .userinfos_dados--dados a{
 	color:#680000;
 }
+
+
+/*
+ * configuracoes do menu lateral
+ */
+.gph_centro{
+	width:1000px;
+	margin:0px auto;
+}
+.gph_intsubmenu{
+	width:20%;
+	float:left;
+	min-height:150px;
+}
+.gph_intsubmenu h1{
+	width:100%;
+	border-bottom:1px dotted #333;
+	font-size:24px;
+	padding-bottom:5px;
+	color:#680000;
+}
+.gph_intsubmenu ul{
+	width:100%;
+	clear:both;
+	padding:0;
+	margin:0;
+}
+.gph_intsubmenu ul li{
+	list-style:none;
+	margin:5px 0 0 0;
+	padding:0;
+}
+.gph_intsubmenu ul li a{
+	width:90% !important;
+	margin-left: 15px;
+	text-align:left !important;
+	background:#680000 !important;
+	color:#fff !important;
+	font:bold 16px Arial, Helvetica, sans-serif !important;
+}
+.gph_intsubmenu ul li a:hover{
+	opacity:0.8;
+}
+
+.gph_intdados{
+	width:74%;
+	float:right;
+	min-height:150px;
+}
+
+.gph_intdados h1{
+	width:100%;
+	clear:both;
+	border-bottom:1px dotted #333;
+}
+.gph_intdados p{
+	font:bold 18px Arial, Helvetica, sans-serif;
+	color:#333;
+}
+.formulario{
+	width:100%;
+	clear:both;
+}
+.formulario p{
+	width:100%;
+	clear:both;
+}
+.formulario_doiscampos p label,
+.formulario p label{
+	display:block;
+	width:100px;
+	float:left;
+	text-align:right;
+	padding:8px 8px 0 0;
+	font:16px Arial, Helvetica, sans-serif;
+	color:#333;
+}
+.formulario_destaque{
+	margin: 0 0 0 30px;
+}
+.formulario_doiscampos{
+	width:100%;
+}
+.formulario_doiscampos input,
+.formulario_doiscampos select{
+	float:left;
+	margin:8px 2px 8px 2px;
+	
+}
+.formulario_enviar{
+	width:100%;
+	clear:both;
+	margin:10px 0 30px 0;
+	border-top:1px dotted #333;
+	padding:10px 0 10px 0;
+	text-align:right;
+}
+#msg_alerta{
+	display:none; 
+	text-align:center;
+	widoth:100%;
+	clear:both;
+	margin-top:10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
