@@ -1,0 +1,115 @@
+.usrlistagem{
+	width:100%;
+	clear:both;
+	padding-top:20px;
+}
+.usrlistagem_titulo{
+	width:100%;
+	height:35px;
+	clear:both;
+	font:16px Arial, Helvetica, sans-serif;
+	color:#333;
+	padding:5px 0 5px 0;
+	background:url(<?=base_url('sites/admin/_images/pixel_1x1_60.png')?>) center left repeat-x;
+}
+.usrlistagem_titulo ul{
+	float:right;
+}
+.usrlistagem_titulo ul li{
+	list-style:none;
+	float:left;
+	padding:0 !important;
+	margin:0 3px 0 3px !important;
+	border:1px solid #bcbaba;
+	background:url(<?=base_url('sites/admin/_images/fundo.png')?>);
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	border-radius:3px;
+}
+.usrlistagem_titulo ul li a,
+.usrlistagem_titulo ul li a:hover{
+	color:#000;
+}
+.usrlistagem_titulo ul li span{
+	padding:2px 6px 0 6px !important;
+	margin:0 !important;
+}
+
+.usrlistagem_titulo span{
+	margin:0 0 0 15px !important;
+	padding:3px 8px 3px 8px !important;
+}
+.usrlistagem_imagem{
+	width:100px;
+	height:100px;
+	float:left;
+	margin:3px 10px 3px 3px;
+	border:1px solid #666;
+	background:#f1f1f1;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+	background:url(<?=base_url('sites/admin/_images/icons/no_user.png')?>) center no-repeat;
+}
+.usrlistagem_imagem a{
+	display:block;
+	width:100px;
+	text-align:center;
+	font:14px Arial, Helvetica, sans-serif;
+	color:#333;
+	padding-top:30px;
+	text-transform:uppercase;
+	font-weight:bold;
+}
+.usrlistagem_imagem a:hover{
+	text-decoration:none;
+	opacity:0.7;
+}
+.usrlistagem_btnenviar{
+	width:100%;
+	clear:both;
+	text-align:right;
+}
+.permissoesuser{
+	width:100%;
+	clear:both;
+	min-height:150px;
+}
+
+					.user_permissoes{
+						font:14px Arial, Helvetica, sans-serif;
+						color:#333;
+					}
+					.user_permissoes h3{
+						width:100%;
+						font:bold 18px Arial, Helvetica, sans-serif;
+						color:#31708f;
+						border-bottom:1px dotted #333;
+					}
+					.user_permissoes ul{
+						width:100%;
+						height:60px;
+						clear:both;
+					}
+					.user_permissoes ul li{
+						float:left;
+						list-style:none;
+						padding:0 20px 0 20px;
+						text-align:center;
+						border-bottom:1px solid #680000;
+					}
+					.user_permissoes ul li span{
+						display:block;
+						font:bold 14px Arial, Helvetica, sans-serif;
+						color:#680000;
+						padding:0 0 5px 0;
+					}
+					.user_permissoes ul li.sessao_titulo{
+						width: 150px;
+						text-align:right;
+						padding:20px 20px 10px 0;
+						font:bold 16px Arial, Helvetica, sans-serif;
+						color:#333;
+						border-bottom:1px solid #680000;
+						border-right:2px solid #680000;
+					}

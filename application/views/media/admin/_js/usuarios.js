@@ -1,23 +1,15 @@
 $(function()
 {
 	
-	var masks = ['00000-0000', '0000-00009'],
-		maskBehavior = function(val, e, field, options) {
-		return val.length > 14 ? masks[0] : masks[1];
-	};
+	/*
+	 * masdcaras para telefone e celular
+	 */
+	if($("#ipt_fone").length ){ $("#ipt_fone").mask("9999-9999"); }
+	if($("#ipt_celular").length ){ $("#ipt_celular").mask("99999-9999"); }
 	
-	$('#ipt_fone').mask(maskBehavior, {onKeyPress: 
-			function(val, e, field, options) {
-			field.mask(maskBehavior(val, e, field, options), options);
-		}
-	});
-	
-	$('#ipt_celular').mask(maskBehavior, {onKeyPress: 
-			function(val, e, field, options) {
-			field.mask(maskBehavior(val, e, field, options), options);
-		}
-	});
-	
+	/*
+	 * validacao dos e-mails, caso exista algum e-mail ja cadastrado
+	 */
 	$('#ipt_email').blur(function(){
 		$.post("<?=site_url(URL_PREFIX.'usuarios/valida_email')?>", $("#novo_usuario").serialize(), function(data) {
 			if(data)
@@ -32,6 +24,9 @@ $(function()
 	});
 	
 	
+	/*
+	 * validacao da senha e confirmacao - caso a senah nao bata com a confirmacao
+	 */
 	$('#ipt_confirmasenha').blur(function()
 	{
      	var senha = $('#ipt_senha').val();
@@ -53,6 +48,10 @@ $(function()
 		//$(this).css({"border-color" : "#F00", "padding": "2px"});
     });
 
+
+	/*
+	 * enviando formulario de cadastro
+	 */
 	$('#btn_enviar').click(function(){
 		var ipt_nome       = $('#ipt_nome').val();
 		var ipt_email      = $('#ipt_email').val();
@@ -106,3 +105,28 @@ $(function()
 		}
 	});
 });
+
+function janela(n_cod, c_nome)
+{
+	$('#n_cod_user').val(n_cod);
+	$('#myModalLabel b').html(c_nome);
+	$.post("<?=site_url(URL_PREFIX.'usuarios/permissoes')?>", $("#janela").serialize(), function(data){
+		$('.permissoesuser').html(data);
+	});
+	$('#myModal').modal('show');
+}
+
+
+function perm(n_cod_user, local, sessao, acao)
+{
+	$('#set_n_cod_user').val(n_cod_user);
+	$('#set_local').val(local);
+	$('#set_sessao').val(sessao);
+	$('#set_acao').val(acao);
+	/*$.post("<?=site_url(URL_PREFIX.'usuarios/seta_permissoes')?>", $("#set_emp").serialize(), function(data){
+		var retorno = '#sbm_'+sessao+'_'+acao+'_'+n_cod_user;
+		$(retorno).empty();
+		$(retorno).append(data);
+		
+	});*/
+}

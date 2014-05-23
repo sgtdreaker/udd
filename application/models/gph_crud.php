@@ -53,6 +53,49 @@ class Gph_crud extends CI_Model {
 			}
 		}
 		
+		/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		// busca os dados com a paginação ////////////////////////////////////////////////////////////////////////////////
+			$num		-> quantos resultados mostrar por página
+			$offset		-> offset atual
+			$tabela		-> qual tabela irei usar na busca
+			$parametros	-> qual parametros irei usar na busca: ex array('site'=>'atacvb')
+			$ordem		-> classificação dos resultados: ex order by id array('id , asc')
+			$exata		-> caso necessite usar um like na busca
+		/////////////////////*/
+			function getDados($num, $offset, $tabela, $parametros=false, $ordem=false, $exata=false, $conta=true )
+			{
+				$this->db->select('*');
+				
+				//-> array para busca
+				if(is_array($parametros))
+				{
+					$this->db->where($parametros);
+				}
+				
+				//-> caso necessite de usar o like
+				if(is_array($exata))
+				{
+					$this->db->like($exata);
+				}
+				//-> ordena a usca
+				if($ordem != false)
+				{
+					foreach($ordem as $ord)
+					{
+						$orde = explode(',', $ord);
+						$this->db->order_by($orde[0], $orde[1]);
+					}
+				}
+				
+				if($conta == true)
+				{
+					$sql = $this->db->get($tabela, $num, $offset);
+				}else{
+					$sql = $this->db->get($tabela);
+				}
+				return $sql;
+			}
+		
 	/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// processos (cadastro, alterar e excluir) /////////////////////////////////////////////////////////////////////*/
 	

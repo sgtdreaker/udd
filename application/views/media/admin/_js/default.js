@@ -44,4 +44,8 @@ $(function() {
 			 .stop(true)
 			 .animate({'top':'25px'},500);
 	});
+	
+	
+	if($(".paginacao").length ){ $('.paginacao a').addClass('btn btn-default'); }
+	
 });

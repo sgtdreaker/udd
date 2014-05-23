@@ -3,6 +3,13 @@
 	clear:both;
 	min-height:5px;
 }
+.pontos{
+	width:100%;
+	clear:both;
+	min-height:5px;
+	border-bottom:1px dotted #333;
+	margin-bottom:10px;
+}
 body{
 	background:#ffffff url(<?=base_url('sites/admin/_images/fundo.png')?>);
 }
@@ -168,8 +175,13 @@ body{
 	clear:both;
 	margin-top:10px;
 }
-
-
+/*
+ * paginacao de dados
+ */
+.paginacao{
+	width:100%;
+	text-align:right;
+}
 
 
 

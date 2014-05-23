@@ -56,6 +56,7 @@ define('C_REGISTRO',	'AuWslL2BXNrfggWe2Gn2tuLGE7K9VPTBQozuFBQEIdqXJWLy4b4i2FFEjP
 define('DB_PREFIX',		'gph_');
 define('URL_PREFIX',	'remote/');
 define('RMT_NOME',		'GoPublish');
+define('BASE_UP',		'arquivos/');
 define('BASE_CLIENT',	'udd');
 define('BASE_ISSET',	'http://localhost/udd/');
 define('DEBUG',			TRUE);

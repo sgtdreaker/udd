@@ -125,4 +125,124 @@ class Usuarios extends CI_Controller {
 			}
 		}
 	}
+	
+	/*
+	 * realiza as alterações no cadastro
+	 */
+	public function alterar()
+	{
+		if(!$this->auth->esta_autenticado())
+		{
+			redirect(URL_PREFIX, 'location');
+		}else{
+			
+			$this->load->view(URL_PREFIX.'templates/estrutura_abre', array('css' => array('default', 'menu', 'usuarios'), 
+																	   	   'js' => array('default', 'usuarios')));
+			$this->load->view(URL_PREFIX.'templates/abrir_layinterna', array('local' => 'administracao'));
+			
+			
+			// recebendo a pagina atual
+				$pageAtual = $this->uri->segment(4);
+				if(empty($pageAtual)){ $pageAtual = 0; }
+			// gerando sql para paginar a busca
+				$contaUsuario = $this->gph_crud->buscar(DB_PREFIX.'usuarios', 'sql', array());
+
+			// configuracoes da paginacao
+				$config['base_url'] = base_url(URL_PREFIX.'usuarios/alterar');
+				$config['total_rows'] = $contaUsuario->num_rows();
+				$config['per_page'] = 15;
+				$config['full_tag_open'] = '<div class="paginacao">';
+				$config['full_tag_close'] = '</div>';
+				$config['uri_segment'] = 4;
+				$config['first_link'] = 'primeira';
+				$config['last_link'] = '&uacute;ltima';
+				$config['prev_link'] = '&laquo;';
+				$config['next_link'] = '&raquo;';
+				
+			// buscando sessoes cadastradas e paginando
+				$data['usuarios'] = $this->gph_crud->getDados($config['per_page'], $pageAtual, 
+															  DB_PREFIX.'usuarios', 
+															  array(), 
+															  array('c_nome,asc'));
+					
+				$this->pagination->initialize($config);	
+				
+			$data['links'] = $this->pagination->create_links();			
+			$this->load->view(URL_PREFIX.'usuarios/alterar', $data);
+			
+			
+			$this->load->view(URL_PREFIX.'templates/fechar_layinterna');
+			$this->load->view(URL_PREFIX.'templates/estrutura_fecha');
+		}
+	}
+	
+	/*
+	 * realiza as alterações no cadastro
+	 */
+	public function alterar_usuario()
+	{
+		if(!$this->auth->esta_autenticado())
+		{
+			redirect(URL_PREFIX, 'location');
+		}else{
+			
+			$this->load->view(URL_PREFIX.'templates/estrutura_abre', array('css' => array('default', 'menu', 'usuarios'), 
+																	   	   'js' => array('default', 'usuarios')));
+			$this->load->view(URL_PREFIX.'templates/abrir_layinterna', array('local' => 'administracao'));
+			
+			$this->load->view(URL_PREFIX.'usuarios/alterar');
+			
+			
+			$this->load->view(URL_PREFIX.'templates/fechar_layinterna');
+			$this->load->view(URL_PREFIX.'templates/estrutura_fecha');
+		}
+	}
+	
+	/*
+	 * listando permissoes
+	 */
+	public function permissoes()
+	{
+		if(!$this->auth->esta_autenticado())
+		{
+			redirect(URL_PREFIX, 'location');
+		}else{
+			$n_cod_user = $this->input->post('n_cod_user');
+			if($n_cod_user)
+			{
+				echo $this->cfg->permissoes($n_cod_user);
+			}else{
+				echo 'Não foi possível localizar dados';
+			}
+		}
+	}
+	/*
+	 * setando as permissoes
+	 */
+	public function seta_permissoes()
+	{
+		if(!$this->auth->esta_autenticado())
+		{
+			redirect(URL_PREFIX, 'location');
+		}else{
+			$n_cod_user = $this->input->post('n_cod_user');
+			$local      = $this->input->post('local');
+			$sessao     = $this->input->post('sessao');
+			$acao       = $this->input->post('acao');
+
+			$matriz = array('n_cod_user'  => $n_cod_user,
+							'c_sessao'    => $local,
+							'c_subsessao' => $sessao,
+							'c_acao'      => $acao);
+			$valida = $this->gph_crud->buscar(DB_PREFIX.'permissoes', 'sql', $matriz);
+			if($valida->num_rows() > 0)
+			{
+				$this->gph_crud->excluir(DB_PREFIX.'permissoes', $matriz);
+				echo '<img src="'.base_url('sites/admin/_images/botoes/auto_off.jpg').'" width="66" height="28" />';
+			}else{
+				$this->gph_crud->adiciona(DB_PREFIX.'permissoes', $matriz);
+				echo '<img src="'.base_url('sites/admin/_images/botoes/auto_on.jpg').'" width="66" height="28" />';
+			}
+		}
+	}
 }

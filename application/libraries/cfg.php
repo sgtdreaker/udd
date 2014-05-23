@@ -31,15 +31,18 @@ class Cfg
 																				   'link'    => 'sessao',
 																				   'padrao'  => 'conteudos',
 																				   'submenu' => array('m1' => array('id'   => 'sbm_cadastro',
-																				   									'txt'  => 'Cadastrar',
+																				   									'perm' => 'cadastro',
+																													'txt'  => 'Cadastrar',
 																													'link' => 'sessao/cadastrar',
 																													'sts'  => 'on'),
 																									  'm2' => array('id'   => 'sbm_alterar',
-																				   									'txt'  => 'Alterar',
+																				   									'perm' => 'alterar',
+																													'txt'  => 'Alterar',
 																													'link' => 'sessao/alterar',
 																													'sts'  => 'on'),
 																									  'm3' => array('id'   => 'sbm_excluir',
-																				   									'txt'  => 'Excluir',
+																				   									'perm' => 'excluir',
+																													'txt'  => 'Excluir',
 																													'link' => 'sessao/excluir',
 																													'sts'  => 'on')),
 																				   ),
@@ -49,15 +52,18 @@ class Cfg
 																				   'link'    => 'subsessao',
 																				   'padrao'  => 'conteudos',
 																				   'submenu' => array('m1' => array('id'   => 'sbm_cadastro',
-																				   									'txt'  => 'Cadastrar',
+																				   									'perm' => 'cadastro',
+																													'txt'  => 'Cadastrar',
 																													'link' => 'subsessao/cadastrar',
 																													'sts'  => 'on'),
 																									  'm2' => array('id'   => 'sbm_alterar',
-																				   									'txt'  => 'Alterar',
+																				   									'perm' => 'alterar',
+																													'txt'  => 'Alterar',
 																													'link' => 'subsessao/alterar',
 																													'sts'  => 'on'),
 																									  'm3' => array('id'   => 'sbm_excluir',
-																				   									'txt'  => 'Excluir',
+																				   									'perm' => 'excluir',
+																													'txt'  => 'Excluir',
 																													'link' => 'subsessao/excluir',
 																													'sts'  => 'on')
 																				   					 )
@@ -68,15 +74,18 @@ class Cfg
 																				   'link'    => 'conteudos',
 																				   'padrao'  => 'conteudos',
 																				   'submenu' => array('m1' => array('id'   => 'sbm_cadastro',
-																				   									'txt'  => 'Cadastrar',
+																				   									'perm' => 'cadastro',
+																													'txt'  => 'Cadastrar',
 																													'link' => 'conteudos/cadastrar',
 																													'sts'  => 'on'),
 																									  'm2' => array('id'   => 'sbm_alterar',
-																				   									'txt'  => 'Alterar',
+																				   									'perm' => 'alterar',
+																													'txt'  => 'Alterar',
 																													'link' => 'conteudos/alterar',
 																													'sts'  => 'on'),
 																									  'm3' => array('id'   => 'sbm_excluir',
-																				   									'txt'  => 'Excluir',
+																				   									'perm' => 'excluir',
+																													'txt'  => 'Excluir',
 																													'link' => 'conteudos/excluir',
 																													'sts'  => 'on')))
 																				   ),
@@ -94,15 +103,18 @@ class Cfg
 																				   'link'    => 'usuarios',
 																				   'padrao'  => 'administracao',
 																				   'submenu' => array('m1' => array('id'   => 'sbm_cadastro',
-																				   									'txt'  => 'Cadastrar',
+																				   									'perm' => 'cadastro',
+																													'txt'  => 'Cadastrar',
 																													'link' => 'usuarios/cadastrar',
 																													'sts'  => 'on'),
 																									  'm2' => array('id'   => 'sbm_alterar',
-																				   									'txt'  => 'Alterar',
+																				   									'perm' => 'alterar',
+																													'txt'  => 'Alterar',
 																													'link' => 'usuarios/alterar',
 																													'sts'  => 'on'),
 																									  'm3' => array('id'   => 'sbm_excluir',
-																				   									'txt'  => 'Excluir',
+																				   									'perm' => 'excluir',
+																													'txt'  => 'Excluir',
 																													'link' => 'usuarios/excluir',
 																													'sts'  => 'on')))
 																	),
@@ -170,7 +182,7 @@ class Cfg
 			if($m['link'] == $local):
 				foreach($m['subm'] as $sm):
 					if(($m['link'] == $local) && ($sm['padrao'] == $local) && ($sm['link'] == $sessao)):
-						echo '<div class="gph_intsubmenu"><h1>Menu de Ações</h1><ul>';
+						echo '<div class="gph_intsubmenu"><!--<h1>Menu de Ações</h1>--><ul>';
 						foreach($sm['submenu'] as $smshow):
 							if($smshow['sts'] == 'on'):
 								echo '<li><a href="'.site_url(URL_PREFIX.$smshow['link']).'" id="'.$smshow['id'].'" class="btn">'.$smshow['txt'].'</a></li>';
@@ -181,6 +193,39 @@ class Cfg
 				endforeach;
 			endif;
 		endforeach;
+	}
+	
+	/*
+	 * listagem de todas as sessoes para liberar permissoes
+	 */
+	public function permissoes($n_cod_user = FALSE, $ret = FALSE)
+	{
+		$ret .= '<div class="user_permissoes">';
+		foreach($this->d_menu as $m):
+			$ret .= '<h3>'.$m['txt'].'</h3>';
+			foreach($m['subm'] as $s):
+				$ret .= '<ul><li class="sessao_titulo">'.$s['txt'].'</li>';
+				foreach($s['submenu'] as $ac):
+					$ret .= '<li>
+							 	<span>'.$ac['txt'].'</span>
+							 	<a href="javascript:perm(\''.$n_cod_user.'\',\''.$m['link'].'\',\''.$s['link'].'\',\''.$ac['perm'].'\')" 
+								   id="sbm_'.$s['link'].'_'.$ac['perm'].'_'.$n_cod_user.'">
+									<img src="'.base_url('sites/admin/_images/botoes/auto_off.jpg').'" width="66" height="28" />
+								</a>
+							 </li>';
+				endforeach;
+				$ret .= '</ul>';
+			endforeach;
+			$ret .= '<div class="limpa"></div>';
+		endforeach;
+		$ret .= '</div>';
+		$ret .= form_open('', array('name'=>'set_emp', 'id'=>'set_emp'));
+		$ret .= '<input type="hidden" name="n_cod_user" id="set_n_cod_user" value="" />
+				 <input type="hidden" name="local"      id="set_local" value="" />
+				 <input type="hidden" name="sessao"     id="set_sessao" value="" />
+				 <input type="hidden" name="acao"       id="set_acao" value="" />';
+		$ret .= form_close();
+		return $ret;
 	}
 	
 }
